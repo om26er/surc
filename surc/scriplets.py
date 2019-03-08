@@ -9,6 +9,10 @@ class BaseScriptlet:
     def name(self):
         raise NotImplementedError("Must be implemented for each scriplet")
 
+    @property
+    def source(self):
+        raise NotImplementedError("Must be implemented for each scriplet")
+
     def get_latest(self):
         raise NotImplementedError("Must be implemented for each scriplet")
 
@@ -21,6 +25,10 @@ class AndroidStudioStable(BaseScriptlet):
     @property
     def name(self):
         return 'android-studio-stable'
+
+    @property
+    def source(self):
+        return 'https://github.com/snapcrafters/android-studio.git'
 
     def get_latest(self):
         with urllib.request.urlopen(self._url) as response:
@@ -48,6 +56,10 @@ class SublimeTextStable(BaseScriptlet):
     @property
     def name(self):
         return 'sublime-text-stable'
+
+    @property
+    def source(self):
+        return 'https://github.com/snapcrafters/sublime-text.git'
 
     def get_latest(self):
         response = requests.get(self._url)

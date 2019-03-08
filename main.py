@@ -6,8 +6,8 @@ SCRIPTLETS = [AndroidStudioStable, SublimeTextStable]
 
 
 def check_updates_and_notify():
-    for Scriptlet in SCRIPTLETS:
-        scriptlet = Scriptlet()
+    for ScriptletClass in SCRIPTLETS:
+        scriptlet = ScriptletClass()
         update_available = DBController.compare(name=scriptlet.name, version=scriptlet.get_latest())
         if update_available:
             print("Time to send that email and create the PR...")
