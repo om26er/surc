@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from surc.schema import Release
+from database.schema import Release
 
 
 class DBController:

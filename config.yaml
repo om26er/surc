@@ -1,0 +1,4 @@
+- name: android-studio-stable
+  snap_source: https://github.com/snapcrafters/android-studio.git
+- name: sublime-text-stable
+  snap_source: https://github.com/snapcrafters/sublime-text.git
