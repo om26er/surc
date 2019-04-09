@@ -13,9 +13,13 @@ parts:
     plugin: dump
     source: .
     prime:
-      - database
       - scriptlets
       - surc.py
+  launcher:
+    plugin: python
+    source: .
+    requirements:
+      - requirements.txt
     stage-packages:
       - curl
       - jq
