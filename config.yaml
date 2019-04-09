@@ -5,9 +5,15 @@ mailing:
     - test@test.com
 
 projects:
+  - name: android-studio
+    snap: https://github.com/snapcrafters/android-studio.git
+    type: scriptlet
   - name: sublime-text
     snap: https://github.com/snapcrafters/sublime-text.git
     type: scriptlet
   - name: pyside2
     snap: https://github.com/om26er/pyside2-snap.git
+    type: pypi
+  - name: crossbar
+    snap: https://github.com/crossbario/crossbar-pypy-snap.git
     type: pypi
