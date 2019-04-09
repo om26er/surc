@@ -3,6 +3,7 @@
 import os
 import subprocess
 import shlex
+import sys
 
 import requests
 import yaml
@@ -38,7 +39,16 @@ def check_if_update_available(name, scriptlet, *scriptlet_args):
 
 
 def main():
-    with open('config.yaml') as file:
+    filename = 'config.yaml'
+    if os.path.exists(filename):
+        config_file = filename
+    elif os.path.exists(os.path.expandvars('$HOME/config.yaml')):
+        config_file = os.path.expandvars('$HOME/config.yaml')
+    else:
+        print("Config file not found, exiting")
+        sys.exit(1)
+
+    with open(config_file) as file:
         config = yaml.load(file, Loader=yaml.FullLoader)
     # FIXME: validate config data
     for project in config['projects']:
