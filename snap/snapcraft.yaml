@@ -1,0 +1,29 @@
+name: surc
+base: core18
+version: '0.1'
+summary: Snap Upstream Release Checker
+description: |
+  Snap Upstream Release Checker 
+
+grade: stable
+confinement: strict
+
+parts:
+  surc:
+    plugin: dump
+    source: .
+    prime:
+      - database
+      - scriptlets
+      - surc.py
+    stage-packages:
+      - curl
+      - jq
+      - wget
+
+apps:
+  surc:
+    command: surc.py
+    plugs:
+      - network
+      - home

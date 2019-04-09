@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 from database.schema import Release
+from database.helpers import get_db_path
 
 
 class DBController:
@@ -11,7 +12,7 @@ class DBController:
     @classmethod
     def _db(cls):
         if cls.session is None:
-            cls.session = sessionmaker(bind=create_engine('sqlite:///surc.sqlite'))()
+            cls.session = sessionmaker(bind=create_engine('sqlite:///{}'.format(get_db_path())))()
         return cls.session
 
     @classmethod

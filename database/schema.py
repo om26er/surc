@@ -2,6 +2,8 @@ from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
+from database.helpers import get_db_path
+
 
 Base = declarative_base()
 
@@ -17,5 +19,5 @@ class Release(Base):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
-engine = create_engine('sqlite:///surc.sqlite', echo=False)
+engine = create_engine('sqlite:///{}'.format(get_db_path()), echo=False)
 Base.metadata.create_all(engine)
