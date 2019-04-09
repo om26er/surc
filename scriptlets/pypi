@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ $# -eq 0 ]]
+then
+    echo "No arguments supplied"
+    exit 1
+fi
+
+wget -qO- https://pypi.python.org/pypi/"$1"/json | jq .info.version | sed -e 's/^"//' -e 's/"$//'

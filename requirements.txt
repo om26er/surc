@@ -1,3 +1,5 @@
 SQLAlchemy
 requests
 PyYAML
+requests
+hub
