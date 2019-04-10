@@ -20,7 +20,7 @@ def sanitize_name(name):
 def send_email_and_create_pull_request(config, name, version, snap_source):
     name = sanitize_name(name)
     email_text = "Version {} of {} is available, please update.\n\nsource: {}".format(version, name, snap_source)
-    response = requests.post(
+    requests.post(
         'https://api.mailgun.net/v3/{}/messages'.format(config['MAILGUN_DOMAIN']),
         auth=('api', config['MAILGUN_API_KEY']),
         data={'from': 'Update Checker <surc@{}>'.format(config['MAILGUN_DOMAIN']),
@@ -28,7 +28,6 @@ def send_email_and_create_pull_request(config, name, version, snap_source):
               "subject": "{} {} Available".format(name, version),
               "text": email_text}
     )
-    print(response, response.status_code, response.json())
 
 
 def check_if_update_available(name, scriptlet, *scriptlet_args):
@@ -59,10 +58,10 @@ def main():
         elif type_ == 'pypi':
             update_available, version = check_if_update_available(name, type_, name)
         else:
-            print("Unsupported type={} provided, skipping....".format(type_))
+            print("Unsupported type={} provided, skipping".format(type_))
             continue
 
-        if not update_available:
+        if update_available:
             send_email_and_create_pull_request(config['mailing'], name, version, snap)
 
 
