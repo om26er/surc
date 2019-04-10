@@ -11,6 +11,10 @@ import yaml
 from database.db_controller import DBController
 
 
+def is_snap():
+    return os.environ.get('SNAP_NAME') == 'surc'
+
+
 def sanitize_name(name):
     if '-' in name:
         return ' '.join([name.capitalize() for name in name.split('-')]).strip()
@@ -32,6 +36,8 @@ def send_email_and_create_pull_request(config, name, version, snap_source):
 
 def check_if_update_available(name, scriptlet, *scriptlet_args):
     command = 'scriptlets/{}'.format(scriptlet)
+    if is_snap():
+        command = os.path.join(os.path.expandvars('$SNAP'), command)
     command = command + " " + ' '.join(scriptlet_args)
     result = subprocess.check_output(shlex.split(command), universal_newlines=True).strip()
     return DBController.compare(name=name, version=result), result
@@ -40,7 +46,7 @@ def check_if_update_available(name, scriptlet, *scriptlet_args):
 def main():
     filename = 'surc-conf.yaml'
     # If we are running from within a snap, find real $HOME
-    if os.environ.get('SNAP_NAME') == 'surc':
+    if is_snap():
         home_dir = subprocess.check_output(shlex.split('perl -we "print((getpwuid $>)[7])"'), universal_newlines=True)
         file_in_home = os.path.join(home_dir, filename)
     else:

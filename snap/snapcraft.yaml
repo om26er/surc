@@ -28,6 +28,8 @@ parts:
 apps:
   surc:
     command: surc.py
+    environment:
+      LC_ALL: en_US.UTF-8
     plugs:
       - network
       - home
