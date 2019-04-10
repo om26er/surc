@@ -15,7 +15,6 @@ parts:
     prime:
       - scriptlets
       - surc.py
-      - surc.wrapper
   launcher:
     plugin: python
     source: .
@@ -28,7 +27,7 @@ parts:
 
 apps:
   surc:
-    command: surc.wrapper
+    command: surc.py
     plugs:
       - network
       - home

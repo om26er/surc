@@ -47,7 +47,8 @@ def main():
     filename = 'surc-conf.yaml'
     # If we are running from within a snap, find real $HOME
     if is_snap():
-        home_dir = subprocess.check_output(shlex.split('perl -we "print((getpwuid $>)[7])"'), universal_newlines=True)
+        home_dir = subprocess.check_output(shlex.split('perl -we "print((getpwuid $>)[7])"'),
+                                           universal_newlines=True, env={'LANG': 'C'})
         file_in_home = os.path.join(home_dir, filename)
     else:
         file_in_home = os.path.expandvars('$HOME/{}'.format(filename))
