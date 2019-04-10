@@ -34,4 +34,4 @@ apps:
 
 layout:
   /etc/wgetrc:
-    bind: $SNAP_DATA/etc/wgetrc
+    bind-file: $SNAP_DATA/etc/wgetrc
