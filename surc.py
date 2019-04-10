@@ -38,11 +38,11 @@ def check_if_update_available(name, scriptlet, *scriptlet_args):
 
 
 def main():
-    filename = 'config.yaml'
+    filename = 'surc-conf.yaml'
     if os.path.exists(filename):
         config_file = filename
-    elif os.path.exists(os.path.expandvars('$HOME/config.yaml')):
-        config_file = os.path.expandvars('$HOME/config.yaml')
+    elif os.path.exists(os.path.expandvars('$HOME/{}'.format(filename))):
+        config_file = os.path.expandvars('$HOME/{}'.format(filename))
     else:
         print("Config file not found, exiting")
         sys.exit(1)
@@ -63,6 +63,8 @@ def main():
 
         if update_available:
             send_email_and_create_pull_request(config['mailing'], name, version, snap)
+        else:
+            print("No update available for {}".format(name))
 
 
 if __name__ == '__main__':
