@@ -15,6 +15,7 @@ parts:
     prime:
       - scriptlets
       - surc.py
+      - surc.wrapper
   launcher:
     plugin: python
     source: .
@@ -27,7 +28,7 @@ parts:
 
 apps:
   surc:
-    command: surc.py
+    command: surc.wrapper
     environment:
       LC_ALL: en_US.UTF-8
     plugs:
