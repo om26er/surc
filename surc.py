@@ -39,7 +39,13 @@ def check_if_update_available(name, scriptlet, *scriptlet_args):
 
 def main():
     filename = 'surc-conf.yaml'
-    file_in_home = os.path.expandvars('$HOME/{}'.format(filename))
+    # If we are running from within a snap, find real $HOME
+    if os.environ.get('SNAP_NAME') == 'surc':
+        home_dir = subprocess.check_output(shlex.split('perl -we "print((getpwuid $>)[7])"'), universal_newlines=True)
+        file_in_home = os.path.join(home_dir, filename)
+    else:
+        file_in_home = os.path.expandvars('$HOME/{}'.format(filename))
+
     if os.path.exists(file_in_home):
         config_file = file_in_home
     elif os.path.exists(filename):
