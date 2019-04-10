@@ -39,10 +39,11 @@ def check_if_update_available(name, scriptlet, *scriptlet_args):
 
 def main():
     filename = 'surc-conf.yaml'
-    if os.path.exists(filename):
+    file_in_home = os.path.expandvars('$HOME/{}'.format(filename))
+    if os.path.exists(file_in_home):
+        config_file = file_in_home
+    elif os.path.exists(filename):
         config_file = filename
-    elif os.path.exists(os.path.expandvars('$HOME/{}'.format(filename))):
-        config_file = os.path.expandvars('$HOME/{}'.format(filename))
     else:
         print("Config file not found, exiting")
         sys.exit(1)
