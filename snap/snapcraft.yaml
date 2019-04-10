@@ -29,8 +29,10 @@ parts:
 apps:
   surc:
     command: surc.wrapper
-    environment:
-      LC_ALL: en_US.UTF-8
     plugs:
       - network
       - home
+
+layout:
+  /etc/wgetrc:
+    bind: $SNAP_DATA/etc/wgetrc
