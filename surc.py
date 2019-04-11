@@ -59,20 +59,17 @@ def validate_recipients(recipients):
 
 def validate_mailing(config):
     assert config is not None
+    assert 'type' in config
     assert 'recipients' in config
     validate_recipients(config['recipients'])
-    if 'type' in config:
-        if config['type'].lower() == 'mailgun':
-            assert 'MAILGUN_DOMAIN' in config and 'MAILGUN_API_KEY' in config
-        elif config['type'].lower() == 'smtp':
-            # TODO: validate smtp details
-            pass
-        else:
-            # TODO: throw exception here for unknown type
-            pass
-    # Default to mailgun if type not specified
-    else:
+    if config['type'].lower() == 'mailgun':
         assert 'MAILGUN_DOMAIN' in config and 'MAILGUN_API_KEY' in config
+    elif config['type'].lower() == 'smtp':
+        # TODO: validate smtp details
+        print("SMTP not implemented yet.")
+        sys.exit(1)
+    else:
+        raise ValueError("type '{}' unknown for mailing config".format(config['type']))
 
 
 def validate_projects(config):
