@@ -1,4 +1,5 @@
 mailing:
+  type: mailgun
   MAILGUN_DOMAIN: <>
   MAILGUN_API_KEY: <>
   recipients:
