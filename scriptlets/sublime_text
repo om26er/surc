@@ -1,3 +1,0 @@
-#!/bin/sh
-
-curl -s 'https://download.sublimetext.com/latest/stable'
