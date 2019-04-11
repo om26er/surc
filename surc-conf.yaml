@@ -11,7 +11,7 @@ projects:
   - name: sublime-text
     snap: https://github.com/snapcrafters/sublime-text.git
     type: command
-    command: "curl -s https://download.sublimetext.com/latest/stable"
+    command: curl -s https://download.sublimetext.com/latest/stable
   - name: pyside2
     snap: https://github.com/om26er/pyside2-snap.git
     type: pypi
