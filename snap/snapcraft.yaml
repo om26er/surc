@@ -36,7 +36,6 @@ apps:
     command: surc.py
     plugs:
       - network
-      - home
 
 layout:
   /etc/wgetrc:
