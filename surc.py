@@ -90,21 +90,9 @@ def validate_config(config):
 
 
 def main():
-    filename = 'surc-conf.yaml'
-    # If we are running from within a snap, find real $HOME
-    if is_snap():
-        home_dir = subprocess.check_output(shlex.split('perl -we "print((getpwuid $>)[7])"'),
-                                           universal_newlines=True, env={'LANG': 'C'})
-        file_in_home = os.path.join(home_dir, filename)
-    else:
-        file_in_home = os.path.expandvars('$HOME/{}'.format(filename))
-
-    if os.path.exists(file_in_home):
-        config_file = file_in_home
-    elif os.path.exists(filename):
-        config_file = filename
-    else:
-        print("Config file not found, exiting")
+    config_file = os.path.expandvars('$HOME/surc-conf.yaml')
+    if not os.path.exists(config_file):
+        print("Did not find config file in {}".format(config_file))
         sys.exit(1)
 
     with open(config_file) as file:
