@@ -3,7 +3,7 @@ is published as a snap but is not integrated into the upstream's automated relea
 
 This will notify people maintaining snaps to push a new update, so users always enjoy the latest and greatest.
 
-####Installation
+## Installation
 ```bash
 snap install surc
 ```
