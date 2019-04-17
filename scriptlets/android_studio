@@ -8,7 +8,7 @@ def main():
     with urllib.request.urlopen('https://developer.android.com/studio/index.html') as response:
         html = response.read().decode()
 
-    matched = re.findall('"((https)?://.*linux.zip)"', html)
+    matched = re.findall('"((https)?://.*linux.tar.gz)"', html)
     # Ensure unique and then convert to a list for easy access.
     links = list(set(matched))
 

@@ -7,7 +7,7 @@ description: |
 adopt-info: surc
 grade: stable
 confinement: strict
-
+`
 parts:
   surc:
     plugin: dump
