@@ -87,7 +87,10 @@ def validate_config(config):
 
 
 def main():
-    config_file = os.path.expandvars('$HOME/surc-conf.yaml')
+    if is_snap():
+        config_file = os.path.expandvars('$SNAP_USER_COMMON/surc-conf.yaml')
+    else:
+        config_file = os.path.expandvars('$HOME/surc-conf.yaml')
     if not os.path.exists(config_file):
         print("Did not find config file in {}".format(config_file))
         sys.exit(1)
